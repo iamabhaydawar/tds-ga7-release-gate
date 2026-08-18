@@ -1,0 +1,24 @@
+name: TDS GA7 Release Gate
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  release-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: "TDS identity: 23f2000620@ds.study.iitm.ac.in"
+        run: echo "TDS identity 23f2000620@ds.study.iitm.ac.in"
+
+      - name: Test release-gate implementation
+        run: python -m unittest test_release_gate -v
